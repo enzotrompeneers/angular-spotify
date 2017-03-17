@@ -1,10 +1,7 @@
+import { SongService } from './../services/song.service';
 import { Component, OnInit } from '@angular/core';
 import { Song } from './../models/Song';
 
-const SONGS: Song[] = [
-  {id: 1, artist: 'David Guetta'},
-  {id: 2, artist: 'Whiz Khalifa'}
-];
 
 @Component({
   selector: 'app-favorites',
@@ -12,11 +9,21 @@ const SONGS: Song[] = [
   styleUrls: ['./favorites.component.scss']
 })
 export class FavoritesComponent implements OnInit {
+  songs: Song[];
+  selectedSong: Song;
 
-  songs: Song[] = SONGS;
-  constructor() { }
+  constructor(private songService: SongService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getSongs();
+  }
+
+  getSongs(): void {
+    this.songService.getSongs().then(songs => this.songs = songs)
+  }
+
+  onSelect(song: Song): void {
+    this.selectedSong = song;
   }
 
 }

@@ -6,15 +6,15 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
-
-import { routing } from './app.routes';
 import { FavoritesComponent } from './favorites/favorites.component';
-
-import { SpotifyApiService } from './services/spotify-api.service';
 import { ArtistComponent } from './artist/artist.component';
 import { AlbumComponent } from './album/album.component';
 
+import { routing } from './app.routes';
+
+import { SpotifyApiService } from './services/spotify-api.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { SongService } from './services/song.service';
 import { MusicListDataService } from './services/music-list-data.service';
 
 @NgModule({
@@ -30,10 +30,10 @@ import { MusicListDataService } from './services/music-list-data.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing,
+    routing
     //InMemoryWebApiModule.forRoot(MusicListDataService)
   ],
-  providers: [SpotifyApiService],
+  providers: [SpotifyApiService, SongService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {MusicList} from './../models/music-list';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 @Injectable()
