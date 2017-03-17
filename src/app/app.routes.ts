@@ -9,6 +9,7 @@ import { AlbumComponent } from './album/album.component';
 const routes: Routes = [
   {path: '', component: SearchComponent},
   {path: 'favorites', component: FavoritesComponent},
+  {path: 'favorites/:id', component: FavoritesComponent},
   {path: 'artist/:id', component:ArtistComponent},
   {path: 'album/:id', component:AlbumComponent}
 ];

@@ -1,8 +1,8 @@
-<h1>Need Music?</h1>
-<p class="lead">Use the Angular Spotify App to browse new releases and add it to your favorites!</p>
+<h1>Angular CLI Spotify</h1>
+<p class="lead">Use the Angular Spotify App to browse new releases, preview and add it to your favorites!</p>
 <form>
   <div class="form-group">
-    <input type="text" name="searchStr" [(ngModel)]="searchStr" (keyup)="SearchMusic()" class="form-control"  placeholder="Search Music...">
+    <input type="text" name="searchStr" [(ngModel)]="searchStr" (keyup)="SearchMusic()" class="form-control"  placeholder="Search artist...">
   </div>
 </form>
 <div *ngIf="searchRes">

@@ -14,6 +14,8 @@ import { SpotifyApiService } from './spotify-api.service';
 import { ArtistComponent } from './artist/artist.component';
 import { AlbumComponent } from './album/album.component';
 
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { AlbumComponent } from './album/album.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    InMemoryWebApiModule.forRoot(FavoriteSongsData)
   ],
   providers: [SpotifyApiService],
   bootstrap: [AppComponent]
