@@ -1,7 +1,7 @@
+import { SpotifyApiService } from './../services/spotify-api.service';
+import { Album } from './../models/Album';
+import { Artist } from './../models/Artist';
 import { Component, OnInit } from '@angular/core';
-import { SpotifyApiService } from './../spotify-api.service';
-import { Album } from './../../../Album';
-import { Artist } from './../../../Artist';
 import { ActivatedRoute } from "@angular/router";
 
 @Component({

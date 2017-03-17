@@ -10,11 +10,12 @@ import { SearchComponent } from './search/search.component';
 import { routing } from './app.routes';
 import { FavoritesComponent } from './favorites/favorites.component';
 
-import { SpotifyApiService } from './spotify-api.service';
+import { SpotifyApiService } from './services/spotify-api.service';
 import { ArtistComponent } from './artist/artist.component';
 import { AlbumComponent } from './album/album.component';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { MusicListDataService } from './services/music-list-data.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
     FormsModule,
     HttpModule,
     routing,
-    InMemoryWebApiModule.forRoot(FavoriteSongsData)
+    //InMemoryWebApiModule.forRoot(MusicListDataService)
   ],
   providers: [SpotifyApiService],
   bootstrap: [AppComponent]
