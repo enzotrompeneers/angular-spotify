@@ -30,16 +30,19 @@ export class SongService {
       .then(res => res.json().data as Song[])
       .catch(this.handleError);
   }
+  create(artist: string, title: string, album: string): Promise<Song> {
+    return this.http.post(this.songsUrl, JSON.stringify({artist: artist, title: title, album: album}), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
+  }
 
   update(song: Song): Promise<Song> {
-
-    console.log("test");
     const url = `${this.songsUrl}/${song.id}`;
     return this.http.put(url, JSON.stringify(song))
       .toPromise()
       .then(() => song)
       .catch(this.handleError);
-
   }
 
 }

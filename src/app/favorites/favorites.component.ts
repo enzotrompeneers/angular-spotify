@@ -11,6 +11,9 @@ import { Song } from './../models/Song';
 export class FavoritesComponent implements OnInit {
   songs: Song[];
   selectedSong: Song;
+  isSaveActive: boolean = false;
+  isCreateActive: boolean = false;
+  errorMessage: boolean = false;
 
   constructor(private songService: SongService) { }
 
@@ -24,10 +27,33 @@ export class FavoritesComponent implements OnInit {
 
   onSelect(song: Song): void {
     this.selectedSong = song;
+    this.isSaveActive = true;
   }
 
-  save(){
+  save(): void {
     this.songService.update(this.selectedSong);
+    this.isSaveActive = false;
+  }
+
+  onCreate(): void {
+    this.isCreateActive = true;
+  }
+
+  add(artist: string, title: string, album:string) {
+    artist = artist.trim();
+    title = title.trim();
+    album = album.trim();
+    if (!artist || !title || !album) {
+      this.errorMessage = true;
+      return;
+    } else {
+      this.songService.create(artist, title, album)
+        .then(song => {
+          this.songs.push(song);
+        });
+      this.isCreateActive = false;
+    }
+    
   }
 
 }
