@@ -26,4 +26,8 @@ export class FavoritesComponent implements OnInit {
     this.selectedSong = song;
   }
 
+  save(){
+    this.songService.update(this.selectedSong);
+  }
+
 }

@@ -1,3 +1,5 @@
+
+<a ng-click="createNewSong()" class="btn btn-success">+ | New song</a>
 <div class="span6">
     <table class="table table-striped table-condensed">
         <thead>
@@ -21,7 +23,6 @@
         </tr>
         </tbody>
     </table>
-    <a ng-click="createNewSong()" class="btn btn-small">create new song</a>
 
     
     <div *ngIf="selectedSong">
@@ -38,5 +39,6 @@
              <label for="album">album:</label>
              <input [(ngModel)]="selectedSong.album" placeholder="album" class="form-control" id="album" maxlength="40" />
         </div>
+        <a (click)="save()" class="btn btn-success">Save</a>
     </div>
 </div>
