@@ -14,6 +14,7 @@ export class FavoritesComponent implements OnInit {
   isSaveActive: boolean = false;
   isCreateActive: boolean = false;
   errorMessage: boolean = false;
+  warningMessage: boolean = false;
 
   constructor(private songService: SongService) { }
 
@@ -25,21 +26,21 @@ export class FavoritesComponent implements OnInit {
     this.songService.getSongs().then(songs => this.songs = songs)
   }
 
-  onSelect(song: Song): void {
+  onSelect(song: Song): void { // update window
     this.selectedSong = song;
     this.isSaveActive = true;
   }
 
-  save(): void {
+  save(): void { // saving the update
     this.songService.update(this.selectedSong);
     this.isSaveActive = false;
   }
 
-  onCreate(): void {
+  onCreate(): void { // create window
     this.isCreateActive = true;
   }
 
-  add(artist: string, title: string, album:string) {
+  add(artist: string, title: string, album:string) { // saving the create
     artist = artist.trim();
     title = title.trim();
     album = album.trim();
@@ -52,8 +53,26 @@ export class FavoritesComponent implements OnInit {
           this.songs.push(song);
         });
       this.isCreateActive = false;
+      this.errorMessage = false;
     }
-    
+  }
+
+  onDelete(song: Song): void { // delete window
+    this.warningMessage = true;
+    this.selectedSong = song;
+  }
+  disableDelete(): void { // disable delete window
+    this.warningMessage = false;
+  }
+  delete(song: Song): void {
+    this.songService.delete(song.id)
+    .then(() => {
+      this.songs = this.songs.filter(s => s !== song)
+      if (this.selectedSong === song) {
+        this.selectedSong = null;
+      }
+    });
+    this.warningMessage = false;
   }
 
 }
