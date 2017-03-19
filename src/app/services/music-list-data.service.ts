@@ -8,10 +8,10 @@ export class MusicListDataService implements InMemoryDbService {
 
     createDb() {
       let songs = [
-        {id: 1, artist: 'Elton John', title: 'mirrors', album: 'dunno'},
-        {id: 2, artist: 'Whiz Khalifa', title: 'testing', album: 'new wave'},
-        {id: 3, artist: 'Whiz Khalifa', title: 'testing', album: 'new wave'},
-        {id: 4, artist: 'Whiz Khalifa', title: 'testing', album: 'new wave'}
+        {id: 1, artist: 'Michael Jackson', title: 'Love Never Felt so Good', album: 'XSCAPE'},
+        {id: 2, artist: 'Barry White	', title: 'Loves theme', album: 'All Time Greatest Hits	edit	delete'},
+        {id: 3, artist: 'Rihanna', title: 'Consideration', album: 'ANTI'},
+        {id: 4, artist: 'Tourist LeMC', title: 'En Route', album: 'En Route (Deluxe)'}
       ];
       return {songs};
     }

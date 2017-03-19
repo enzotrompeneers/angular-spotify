@@ -22,7 +22,9 @@
       <div class="well">
         <h5>{{track.track_number}} - {{track.name}}</h5>
         <a href="{{track.preview_url}}" target="blank">Preview Track</a><br><br>
-        <a routerLink="/favorites/{{track.name}}" class="btn btn-success">+ | Add to Favorites</a>
+        <span *ngFor="let artist of album.artists">
+        <a (click)="add(artist.name, track.name, album.name)" class="btn btn-success">+ | Add to Favorites</a>
+        </span>
       </div>
     </div>
   </div>

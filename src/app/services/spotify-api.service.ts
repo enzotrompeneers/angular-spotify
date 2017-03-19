@@ -16,6 +16,7 @@ export class SpotifyApiService {
   }
 
   SearchMusic(str: string, type='artist'): Observable<any> {
+    console.log(str);
     this.searchUrl = this.baseUrl+'search?query='+str+'&offset=0&limit=20&type='+type+'&market=BE';
     return this.http.get(this.searchUrl)
       .map(res => res.json());

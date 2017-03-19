@@ -31,7 +31,9 @@ import { MusicListDataService } from './services/music-list-data.service';
     FormsModule,
     HttpModule,
     routing,
-    InMemoryWebApiModule.forRoot(MusicListDataService)
+    InMemoryWebApiModule.forRoot(MusicListDataService, {
+      passThruUnknownUrl: true
+    })
   ],
   providers: [SpotifyApiService, SongService],
   bootstrap: [AppComponent]
