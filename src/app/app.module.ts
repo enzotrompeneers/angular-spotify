@@ -16,6 +16,7 @@ import { SpotifyApiService } from './services/spotify-api.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { SongService } from './services/song.service';
 import { MusicListDataService } from './services/music-list-data.service';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MusicListDataService } from './services/music-list-data.service';
     SearchComponent,
     FavoritesComponent,
     ArtistComponent,
-    AlbumComponent
+    AlbumComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

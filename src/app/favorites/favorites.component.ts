@@ -13,6 +13,7 @@ export class FavoritesComponent implements OnInit {
   selectedSong: Song;
   isSaveActive: boolean = false;
   isCreateActive: boolean = false;
+  editErrorMessage: boolean = false;
   errorMessage: boolean = false;
   warningMessage: boolean = false;
 
@@ -31,9 +32,22 @@ export class FavoritesComponent implements OnInit {
     this.isSaveActive = true;
   }
 
-  save(): void { // saving the update
-    this.songService.update(this.selectedSong);
-    this.isSaveActive = false;
+  save(artist: string, title: string, album:string) { // saving the update
+    artist = artist.trim();
+    title = title.trim();
+    album = album.trim();
+    if (!this.selectedSong.album) {
+        this.selectedSong.album = "none"
+      }
+
+    if (!artist || !title) {
+      this.editErrorMessage = true;
+      return;
+    } else {
+      this.songService.update(this.selectedSong);
+      this.isSaveActive = false;
+      this.editErrorMessage = false;
+    }
   }
 
   onCreate(): void { // create window
@@ -44,16 +58,21 @@ export class FavoritesComponent implements OnInit {
     artist = artist.trim();
     title = title.trim();
     album = album.trim();
+    if (!album) {
+        album = "none"
+      }
     if (!artist || !title || !album) {
       this.errorMessage = true;
       return;
     } else {
+      
       this.songService.create(artist, title, album)
         .then(song => {
           this.songs.push(song);
         });
-      this.isCreateActive = false;
+      //this.isCreateActive = false;
       this.errorMessage = false;
+      this.isCreateActive = false; // animation uitgezet
     }
   }
 

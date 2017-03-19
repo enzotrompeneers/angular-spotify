@@ -1,5 +1,8 @@
+<div ng-app="ngAnimate"> <!-- add/remove classes -->
 
-<a (click)="onCreate()" class="btn btn-success">+ | New song</a>
+
+<a (click)="onCreate()" class="btn btn-success">+ | New song</a><br>
+<input type="checkbox" ng-model="myCheck"> Stop adding <br><br>
 <div *ngIf="warningMessage">
     <div class="alert alert-dismissible alert-warning">
         <h4>Warning!</h4>
@@ -8,45 +11,55 @@
         <a (click)="disableDelete()" class="btn btn-small">No</a>
     </div>
 </div>
-<div class="span6">
-    <div *ngIf="isCreateActive">
-        <div *ngIf="errorMessage">
-            <div class="alert alert-dismissible alert-danger">
-                <h4>Error</h4>
-                <p>Gelieve alle velden in te vullen</p>
-            </div>
-        </div>
-        <h4>Addding a new song</h4>
-        <div class="form-group">
-             <label for="artist">artist:</label>
-             <input type="text" placeholder="artist" class="form-control" id="artist" maxlength="40" #artist/>
-        </div>
-        <div class="form-group">
-             <label for="title">title:</label>
-             <input type="text" placeholder="title" class="form-control" id="title" maxlength="40" #title />
-        </div>
-        <div class="form-group">
-             <label for="album">album:</label>
-             <input type="text" placeholder="album" class="form-control" id="album" maxlength="40" #album/>
-        </div>
-        <a (click)="add(artist.value, title.value, album.value)" class="btn btn-success">Save</a>
-    </div>
 
+<div *ngIf="editErrorMessage">
+    <div class="alert alert-dismissible alert-danger">
+        <h4>Error</h4>
+        <p>Fill in all the fields</p>
+    </div>
+</div> 
+<div class="span6">
+    <div class="blokje" ng-hide="myCheck">
+    <div *ngIf="isCreateActive">
+            <div id="addForm">
+                <a  class="keyframes active">
+                    <div *ngIf="errorMessage">
+                        <div class="alert alert-dismissible alert-danger">
+                            <h4>Error</h4>
+                            <p>Fill in all the fields</p>
+                        </div>
+                    </div> 
+                    <form>
+                        <h4>Addding a new song</h4>
+                        <label for="artist">artist:</label>
+                        <input type="text" placeholder="artist" class="form-control" id="artist" maxlength="40" #artist/>
+                        <label for="title">title:</label>
+                        <input type="text" placeholder="title" class="form-control" id="title" maxlength="40" #title />    
+                        <label for="album">album:</label>
+                        <input type="text" placeholder="album" class="form-control" id="album" maxlength="40" #album/> 
+                        <a id="addSaveButton"  (click)="add(artist.value, title.value, album.value)" ng-model="myCheck" class="btn btn-success">Save</a>
+                    </form>
+                </a>
+            </div>
+            
+        </div>
+        
+    </div>
     <div *ngIf="isSaveActive">
         <h4>Edit <span>{{selectedSong.artist}} - {{selectedSong.title}}</span></h4>
         <div class="form-group">
              <label for="artist">artist:</label>
-             <input [(ngModel)]="selectedSong.artist" placeholder="artist" class="form-control" id="artist" maxlength="40" />
+             <input [(ngModel)]="selectedSong.artist" placeholder="artist" class="form-control" id="artist" maxlength="40" #artist/>
         </div>
         <div class="form-group">
              <label for="title">title:</label>
-             <input [(ngModel)]="selectedSong.title" placeholder="title" class="form-control" id="title" maxlength="40" />
+             <input [(ngModel)]="selectedSong.title" placeholder="title" class="form-control" id="title" maxlength="40" #title/>
         </div>
         <div class="form-group">
              <label for="album">album:</label>
-             <input [(ngModel)]="selectedSong.album" placeholder="album" class="form-control" id="album" maxlength="40" />
+             <input [(ngModel)]="selectedSong.album" placeholder="album" class="form-control" id="album" maxlength="40" #album/>
         </div>
-        <a (click)="save()" class="btn btn-success">Save</a>
+        <a (click)="save(artist.value, title.value, album.value)" class="btn btn-success">Save</a>
     </div>
     <table class="table table-striped table-condensed">
         <thead>
@@ -70,4 +83,5 @@
         </tr>
         </tbody>
     </table>
+</div>
 </div>

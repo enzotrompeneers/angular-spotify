@@ -1,3 +1,8 @@
+<!--
+<div ng-app="" ng-init="mySwitch=false">
+<button ng-disabled="mySwitch" ng-click="mySwitch=true">Click Me!</button>
+</div> 
+-->
 <div id="album" *ngIf="album">
   <header class="album-header">
     <div class="row">
@@ -22,9 +27,7 @@
       <div class="well">
         <h5>{{track.track_number}} - {{track.name}}</h5>
         <a href="{{track.preview_url}}" target="blank">Preview Track</a><br><br>
-        <span *ngFor="let artist of album.artists">
-        <a (click)="add(artist.name, track.name, album.name)" class="btn btn-success">+ | Add to Favorites</a>
-        </span>
+          <button (click)="add(album.artists[0].name, track.name, album.name)" class="btn btn-success"  >+ | Add to Favorites</button>
       </div>
     </div>
   </div>
